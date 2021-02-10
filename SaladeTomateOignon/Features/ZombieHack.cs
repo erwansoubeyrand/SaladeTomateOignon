@@ -7,12 +7,11 @@ namespace SaladeTomateOignon.Features
 {
     internal class ZombieHack
     {
-        private readonly NativeMemory _memory;
-        private readonly IntPtr _playerPedPtr;
-
-        private Vector3 _playerPosition;
-        private readonly IntPtr _zmBotListBase;
+        private NativeMemory _memory;
+        private IntPtr _playerPedPtr;
+        private IntPtr _zmBotListBase;
         private IntPtr _zmGlobalBase;
+        private Vector3 _playerPosition;
 
         public ZombieHack(IntPtr playerPedPtr, IntPtr zmBotListBase, IntPtr zmGlobalBase, NativeMemory memory)
         {

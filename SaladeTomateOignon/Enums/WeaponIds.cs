@@ -4,16 +4,16 @@ namespace SaladeTomateOignon.Enums
     public enum WeaponsIds : int
     {
         /* Assault Rifles  */
-        XM4 = 42,
-        AK47 = 4,
-        KRIG6 = 8,
-        QBZ83 = 40,
-        FFAR1 = 23,
+        XM4 = 248,
+        AK47 = 257,
+        KRIG6 = 238,
+        QBZ83 = 259,
+        FFAR1 = 260,
         GROZA = 39,
 
         /* Submachine Guns */
         MP5 = 32,
-        MILANO821 = 47,
+        MILANO821 = 298,
         AK47U = 34,
         KSP45 = 14,
         BULLFROG = 11,
@@ -36,13 +36,13 @@ namespace SaladeTomateOignon.Enums
         M82 = 3,
 
         /* Pistols */
-        P1911 = 12,
-        MAGNUM = 16,
-        DIAMATTI = 22,
+        P1911 = 236,
+        MAGNUM = 296,
+        DIAMATTI = 250,
 
         /* Shotguns */
         HAUER77 = 29,
-        GALLOSA12 = 41,
+        GALLOSA12 = 322,
         STREETSWEEPER = 49,
 
         /* Launcher */
@@ -57,6 +57,7 @@ namespace SaladeTomateOignon.Enums
         /* Special */
         M79 = 6,
         WONDER = 20,
-        RAYGUN = 44
+        RAYGUN = 44,
+        
     }
 }

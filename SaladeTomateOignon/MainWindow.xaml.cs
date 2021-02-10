@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using SaladeTomateOignon.Enums;
+using SaladeTomateOignon.Utils;
 
 namespace SaladeTomateOignon
 {
@@ -15,15 +16,16 @@ namespace SaladeTomateOignon
         private readonly BackgroundWorker _backgroundWorker = new BackgroundWorker();
         private WpfConsole _console;
         private Core _core;
+        
         private bool _critOnly;
-
+        private bool _automaticSwitch;
         private bool _infiniteAmmo;
         private bool _infiniteMoney;
         private bool _instantKill;
         private bool _rapidFire;
         private bool _teleportZombies;
         private bool _teleportZombiesLocation;
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -36,8 +38,7 @@ namespace SaladeTomateOignon
             if (_core.Start())
             {
                 _console.WriteLine("We gucci fam.", Brushes.Green);
-                WeaponIdComboBox.ItemsSource = Enum.GetValues(typeof(WeaponsIds)).Cast<WeaponsIds>()
-                    .Select(e => new KeyValuePair<string, int>(e.ToString(), (int) e));
+                WeaponIdComboBox.ItemsSource = WeaponsUtils.GetWeaponsIds<WeaponsIds>();
                 EnableContentOnWindow();
                 _backgroundWorker.DoWork += BackgroundWorkerDoWork;
                 _backgroundWorker.RunWorkerAsync();
@@ -58,14 +59,13 @@ namespace SaladeTomateOignon
             RapidFireCheckBox.IsEnabled = true;
             AlwaysCritCheckBox.IsEnabled = true;
             ThermalVisonCheckBox.IsEnabled = true;
-            //AutoSwitchWeaponCheckBox.IsEnabled = true;  Not Implemented.
+            AutoSwitchWeaponCheckBox.IsEnabled = true;
             InstantKillCheckBox.IsEnabled = true;
             TeleportZombieCheckBox.IsEnabled = true;
             TeleportZombiePositionCheckBox.IsEnabled = true;
             SetPositionbutton.IsEnabled = true;
             XpModiferCheckBox.IsEnabled = true;
             GunXpModiferCheckBox.IsEnabled = true;
-            TimeScaleModiferCheckBox.IsEnabled = false;
             ChangeWeaponButton.IsEnabled = true;
         }
 
@@ -127,6 +127,9 @@ namespace SaladeTomateOignon
 
                     if (_critOnly)
                         _core.MiscFeatures.CritOnly();
+                    
+                    if (_automaticSwitch)
+                        _core.MiscFeatures.AutomaticWeaponSwitch();
                 }
                 catch (Exception exception)
                 {
@@ -215,18 +218,6 @@ namespace SaladeTomateOignon
             _core.XpMultiplier.GunXpMultiplier(1f);
         }
 
-        private void TimeScaleEnabled(object sender, RoutedEventArgs e)
-        {
-            _console.WriteLine("Time Scaled Speed Enabled", Brushes.Green);
-            _core.SpeedMultiplier.SetTimeScale((float) TimeScaleModiferSlider.Value);
-        }
-
-        private void TimeScaleDisabled(object sender, RoutedEventArgs e)
-        {
-            _console.WriteLine("Time Scaled Speed Disabled", Brushes.Green);
-            _core.SpeedMultiplier.SetTimeScale(1f);
-        }
-
         private void InfraredEnable(object sender, RoutedEventArgs e)
         {
             _console.WriteLine("Infrared enabled", Brushes.Green);
@@ -292,6 +283,18 @@ namespace SaladeTomateOignon
             var weapon = (KeyValuePair<string, int>) WeaponIdComboBox.SelectedItem;
             _core.MiscFeatures.SetWeapon(weapon.Value);
             MyWeaponLabel.Content = $"Weapon: {WeaponIdComboBox.Text}";
+        }
+
+        private void AutomaticSwitchEnable(object sender, RoutedEventArgs e)
+        {
+            _console.WriteLine("AutomaticSwitch Enabled", Brushes.Green);
+            _automaticSwitch = true;
+        }
+        
+        private void AutomaticSwitchDisabled(object sender, RoutedEventArgs e)
+        {
+            _console.WriteLine("AutomaticSwitch Disabled", Brushes.Green);
+            _automaticSwitch = false;
         }
     }
 }

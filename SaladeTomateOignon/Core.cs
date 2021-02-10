@@ -16,6 +16,7 @@ namespace SaladeTomateOignon
         public ZombieHack ZombieHack { get; private set; }
         public XpMultiplier XpMultiplier { get; private set; }
         public MiscFeatures MiscFeatures { get; private set; }
+        
         public WeaponsIds WeaponsIds{ get; private set;}
 
         private const string GameTitle = "Call of Duty®: Black Ops Cold War";
@@ -81,6 +82,7 @@ namespace SaladeTomateOignon
             _console.WriteLine($"zmBotBase: {_zmBotBase}", Brushes.Green);
             _console.WriteLine($"zmBotListBase: {_zmBotListBase}", Brushes.Green);
             _console.WriteLine($"Attached: BaseAddress: {_baseAddress}", Brushes.Green);
+            _console.WriteLine($"PlayerBase : {_baseAddress + Offsets.PlayerBase}",Brushes.Green);
 
             return true;
         }

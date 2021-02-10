@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using BlueRain;
+using SaladeTomateOignon.Enums;
 using SaladeTomateOignon.Utils;
 
 namespace SaladeTomateOignon.Features
@@ -8,9 +12,12 @@ namespace SaladeTomateOignon.Features
     {
         private readonly IntPtr _baseAddress;
         private readonly NativeMemory _memory;
-        private bool _critOnly;
 
+        private bool _critOnly;
+        private bool _automaticWeaponSwitch = true;
         private bool _infraredVision;
+        
+        private Queue _weaponQueue;
 
         public MiscFeatures(IntPtr baseAddress, NativeMemory memory)
         {
@@ -48,12 +55,7 @@ namespace SaladeTomateOignon.Features
             if (!_critOnly)
             {
                 _critOnly = !_critOnly;
-                _memory.Write(false, -1, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.CritOffset1);
-                _memory.Write(false, -1, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.CritOffset2);
-                _memory.Write(false, -1, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.CritOffset3);
-                _memory.Write(false, -1, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.CritOffset4);
-                _memory.Write(false, -1, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.CritOffset5);
-                _memory.Write(false, -1, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.CritOffset6);
+                _memory.Write(false, (Byte)255, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.CritOffset);
             }
             else
             {
@@ -69,6 +71,27 @@ namespace SaladeTomateOignon.Features
 
         public void AutomaticWeaponSwitch()
         {
+            SetQueue();
+            int killCount = _memory.Read<int>(false, _baseAddress + Offsets.PlayerBase, (IntPtr) Offsets.PlayerCompPtr.KillCount);
+            if (killCount % 5 == 0)
+            {
+                SetWeapon((int)_weaponQueue.Peek());
+                _weaponQueue.Dequeue();
+            }
+        }
+
+        private void SetQueue()
+        {
+            if (_automaticWeaponSwitch)
+            {
+                _weaponQueue = new Queue();
+                var weapons = WeaponsUtils.GetWeaponsIds<WeaponsIds>();
+                foreach (var weaponId in weapons.Select(e => e.Key))
+                {
+                    _weaponQueue.Enqueue(weaponId);
+                }
+                _automaticWeaponSwitch = false;
+            }
         }
     }
 }

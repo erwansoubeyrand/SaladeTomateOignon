@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="STO" Height="720" Width="827"
+        Title="STO" Height="720" Width="860"
         ResizeMode="NoResize">
 
     <Grid Loaded="OnLoaded">
@@ -20,11 +20,11 @@
         <GridSplitter
             Grid.Row="2"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#FF2D2D2D"
             ShowsPreview="true"
             Width="auto"
-            Height="2" />
+            Height="2" Margin="0,5,0,0" />
 
         <GridSplitter
             Grid.Row="4"
@@ -34,10 +34,9 @@
             ShowsPreview="true"
             Width="auto"
             Height="2" />
-        <Label Grid.Row="0" Content="Salade Tomate Oignon" HorizontalAlignment="Center" VerticalAlignment="Top"
-               FontSize="25" FontFamily="Times New Roman" />
-        <Button Grid.Row="0" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35"
-                Width="66" Name="StartButton" Click="StartButton_Click" Margin="738,0,0,0" />
+        <Label Content="Salade Tomate Oignon" HorizontalAlignment="Center" VerticalAlignment="Center"
+               FontSize="25" FontFamily="Times New Roman" Height="40" />
+        <Button Content="Start" VerticalAlignment="Center" Height="34" Name="StartButton" Click="StartButton_Click" Margin="730,0,20,0" />
 
         <Grid Width="auto" Height="auto" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -47,53 +46,51 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="26" />
-                <RowDefinition Height="26" />
-                <RowDefinition Height="26   " />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="250px" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="220" />
+                <ColumnDefinition Width="Auto" MinWidth="200" />
+                <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <CheckBox Grid.Column="0" Content="God Mode" Name="GodModeCheckBox" HorizontalAlignment="Left"
-                      VerticalAlignment="Center" Checked="GodModeEnable" Unchecked="GodModeDisable" Height="22"
-                      Margin="10,0,0,0" IsEnabled="False" />
+                      VerticalAlignment="Center" Checked="GodModeEnable" Unchecked="GodModeDisable" Height="25"
+                      Margin="20,0,0,0" IsEnabled="False" />
             <CheckBox Grid.Row="1" Grid.Column="0" Content="Speed Hack" Name="SpeedHackCheckBox"
                       HorizontalAlignment="Left" VerticalAlignment="Center" Checked="SpeedHackEnabled"
-                      Unchecked="SpeedHackDisable" Height="23" Margin="10,0,0,0" IsEnabled="False" />
+                      Unchecked="SpeedHackDisable" Height="25" Margin="20,0,0,0" IsEnabled="False" />
             <Slider Grid.Row="1" Grid.Column="1" Name="SpeedHackValueSlider" HorizontalAlignment="Center"
                     VerticalAlignment="Center" Width="120" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0"
-                    Maximum="10" Minimum="1" Height="22" Background="{x:Null}" Orientation="Horizontal"
+                    Maximum="10" Minimum="1" Height="25" Background="{x:Null}" Orientation="Horizontal"
                     TickPlacement="None" />
-            <CheckBox Grid.Row="2" Grid.Column="0" Content="Infinite Money  " Name="MoneyHackCheckBox"
+            <CheckBox Grid.Row="2" Grid.Column="0" Content="Infinite Money" Name="MoneyHackCheckBox"
                       HorizontalAlignment="Left" Width="101" Checked="InfiniteMoneyHack"
-                      Unchecked="InfiniteMoneyDisable" Height="23" Margin="10,1,0,2" IsEnabled="False" />
+                      Unchecked="InfiniteMoneyDisable" Margin="20,0,0,0" IsEnabled="False" Height="25" />
             <CheckBox Grid.Row="3" Grid.Column="0" Content="Infinite Ammo" Name="InfiniteAmmoCheckBox"
                       HorizontalAlignment="Left" VerticalAlignment="Center" Width="101" Checked="InfiniteAmmoEnable"
-                      Unchecked="InfiniteAmmoDisable" Height="23" Margin="10,0,0,0" IsEnabled="False" />
+                      Unchecked="InfiniteAmmoDisable" Height="25" Margin="20,0,0,0" IsEnabled="False" />
             <CheckBox Grid.Row="6" Grid.Column="0" Content="Rapid Fire" Name="RapidFireCheckBox"
-                      HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"
-                      Checked="RapidFireEnabled" Unchecked="RapidFireDisable" IsEnabled="False" />
-            <CheckBox Grid.Row="7" Grid.Column="0" Content="Always Crit / Headshot Only" Name="AlwaysCritCheckBox"
-                      HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="10,0,0,0"
-                      Checked="HeadShotOnlyEnabled" Unchecked="HeadShotOnlyDisable" IsEnabled="False" />
+                      HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"
+                      Checked="RapidFireEnabled" Unchecked="RapidFireDisable" IsEnabled="False" Height="25" />
+            <CheckBox Grid.Row="7" Grid.Column="0" Content="Always Critical Hit" Name="AlwaysCritCheckBox"
+                      HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"
+                      Checked="HeadShotOnlyEnabled" Unchecked="HeadShotOnlyDisable" IsEnabled="False" Height="25" />
             <CheckBox x:Name="ThermalVisonCheckBox" Grid.Row="8" Grid.Column="0" Content="Thermal Vision"
-                      HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="10,0,0,0"
-                      Checked="InfraredEnable" Unchecked="InfraredDisable" IsEnabled="False" />
+                      HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"
+                      Checked="InfraredEnable" Unchecked="InfraredDisable" IsEnabled="False" Height="25" />
             <CheckBox x:Name="AutoSwitchWeaponCheckBox" Grid.Row="9" Grid.Column="0"
-                      Content="Auto Switch Weapon. (Not Implemented)" HorizontalAlignment="Left"
-                      VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="10,0,0,0" IsEnabled="False" />
-            <Button Grid.Row="1" Grid.Column="3" Height="25px" Width="100px" Content="Set Weapon"
-                    HorizontalAlignment="Left" VerticalAlignment="Top" Name="ChangeWeaponButton"
+                      Content="Automatic Switch Weapon." HorizontalAlignment="Left" VerticalAlignment="Center"
+                      Margin="20,0,0,0" IsEnabled="False" Checked="AutomaticSwitchEnable" Unchecked="AutomaticSwitchDisabled" Height="25" />
+            <Button Grid.Row="1" Grid.Column="2" Height="25px" Width="150px" Content="Set Weapon"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Name="ChangeWeaponButton" Margin="20,0,0,0"
                     Click="ChangeWeaponButton_Click" IsEnabled="False" />
-            <ComboBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"
-                      Margin="127,0,0,0" Name="WeaponIdComboBox" />
-            <Label Grid.Row="2" Grid.Column="3" Content="Weapon: MyWeapon" Grid.ColumnSpan="2" Name="MyWeaponLabel" />
+            <ComboBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Name="WeaponIdComboBox" Height="25" Margin="200,0,20,0" />
+            <Label Grid.Row="2" Grid.Column="2" Content="Weapon: MyWeapon" Name="MyWeaponLabel" Margin="0,0,0,23" Grid.RowSpan="2" />
         </Grid>
 
         <Grid Width="auto" Height="auto" Grid.Row="3">
@@ -119,8 +116,8 @@
                       Name="TeleportZombiePositionCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center"
                       Checked="TeleportZombiesPosEnabled" Unchecked="TeleportZombiesPosDisabled" Height="23"
                       Margin="10,0,0,0" IsEnabled="False" />
-            <Button x:Name="SetPositionbutton" Grid.Row="2" Grid.Column="1" Height="25px" Width="100px"
-                    Content="Set Position" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"
+            <Button x:Name="SetPositionbutton" Grid.Row="2" Grid.Column="1" Height="25px" Width="150px"
+                    Content="Set Position" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,3"
                     Click="SetPosition" IsEnabled="False" />
             <Label Grid.Row="2" Grid.Column="2" Name="PositionLabel" Content="Set Position: [0,0,0]" />
         </Grid>
@@ -150,14 +147,6 @@
                     VerticalAlignment="Center" Width="700" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0"
                     Maximum="1000" Minimum="1" Height="22" Orientation="Horizontal" TickPlacement="None"
                     Thumb.DragCompleted="GunXpModiferEnabled" />
-
-            <CheckBox Grid.Row="4" Grid.Column="0" Content="TimeScale Modifier (Use Me If Retard)"
-                      Name="TimeScaleModiferCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center"
-                      Grid.ColumnSpan="2" Margin="301,0,0,0" Checked="TimeScaleEnabled" Unchecked="TimeScaleDisabled"
-                      IsEnabled="False" />
-            <Slider Grid.Row="5" Grid.Column="0" Name="TimeScaleModiferSlider" HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Width="700" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0"
-                    Maximum="10" Minimum="1" Height="22" Orientation="Horizontal" TickPlacement="None" />
         </Grid>
 
         <Grid Width="auto" Height="225" Grid.Row="6" VerticalAlignment="Bottom" HorizontalAlignment="Center">
