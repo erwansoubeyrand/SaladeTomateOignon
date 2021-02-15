@@ -2,13 +2,13 @@
 {
     internal class Offsets
     {
-        public static int PlayerBase = 0x10A9FBC8; /** Sig : 4C 8D 05 ? ? ? ? 41 8B 8C 98 ? ? ? ? 85 ? ? ? 83 F9 07 ? ? 48 98 41 3B 8C 80 ? ? ? ? 74 02 **/
+        public static int PlayerBase = 0x10AA0BC8; /** Sig : 4C 8D 05 ? ? ? ? 41 8B 8C 98 ? ? ? ? 85 ? ? ? 83 F9 07 ? ? 48 98 41 3B 8C 80 ? ? ? ? 74 02 **/
         public static int ZMXPScaleBase = 0x10AC7BC0;
         public static int XPScaleBase = 0xFD2C250;
         
         public static class PlayerCompPtr
         {
-            public static int ArraySizeOffset = 0xB830;
+            public static int ArraySizeOffset = 0xB900;
             public static int CurrentUsedWeaponID = 0x28;
             public static int SetWeaponID = 0xB0;
             public static int InfraredVision = 0xE66;
