@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -38,7 +37,7 @@ namespace SaladeTomateOignon
             if (_core.Start())
             {
                 _console.WriteLine("We gucci fam.", Brushes.Green);
-                WeaponIdComboBox.ItemsSource = WeaponsUtils.GetWeaponsIds<WeaponsIds>();
+                WeaponIdComboBox.ItemsSource = WeaponUtils.GetWeaponsIds<WeaponsIds>();
                 EnableContentOnWindow();
                 _backgroundWorker.DoWork += BackgroundWorkerDoWork;
                 _backgroundWorker.RunWorkerAsync();

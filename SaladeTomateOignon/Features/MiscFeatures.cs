@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using BlueRain;
 using SaladeTomateOignon.Enums;
@@ -85,7 +84,7 @@ namespace SaladeTomateOignon.Features
             if (_automaticWeaponSwitch)
             {
                 _weaponQueue = new Queue();
-                var weapons = WeaponsUtils.GetWeaponsIds<WeaponsIds>();
+                var weapons = WeaponUtils.GetWeaponsIds<WeaponsIds>();
                 foreach (var weaponId in weapons.Select(e => e.Key))
                 {
                     _weaponQueue.Enqueue(weaponId);
